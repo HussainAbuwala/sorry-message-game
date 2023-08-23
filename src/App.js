@@ -1,12 +1,24 @@
 import Confetti from 'react-confetti'
 import Card from './Card.js'
-import arr from './data.js'
+import Data from './data.js'
 import { useEffect, useState, useRef, useCallback } from 'react'
 import AnimatedNumbers from "react-animated-numbers";
 
 
+
+function shuffleArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+}
+
+let arr = [...Data]
 const PAGE_SIZE = 5
 const TOTAL_RECORDS = arr.length
+
+
 
 function App() {
 
@@ -89,6 +101,7 @@ function App() {
     setMessages([])
     setPageNumber(1)
     setLoading(true)
+    arr = shuffleArray(arr)
   }
   
   return (
